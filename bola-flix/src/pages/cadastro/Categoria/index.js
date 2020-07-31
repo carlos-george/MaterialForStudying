@@ -15,8 +15,10 @@ const CadastroCategoria = () => {
   const [values, setValues] = useState(initialValues);
 
   useEffect(() => {
-    const url = 'http://localhost:8080/categorias';
-    fetch(url).then(async (resposta) => {
+    const URL = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://bola-flix.herokuapp.com/categorias';
+    fetch(URL).then(async (resposta) => {
       const res = await resposta.json();
       setCategorias([
         ...res,
